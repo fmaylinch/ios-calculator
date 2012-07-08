@@ -1,0 +1,28 @@
+Hola,
+
+
+Mi calculadora tiene dos diferencias pequeñas respecto al enunciado.
+La intención es que sean mejoras:
+
+1) Se pueden asignar valores a las variables.
+Para ello se teclea un número y se pulsa la tecla de la variable que se quiere asignar.
+La tecla "Reset" borrará los valores asignados.
+
+2) La tecla "<--" borra dígito a dígito el número que estamos introduciendo en el display.
+Si no se está introduciendo ningún número, borrará el top de la pila del programa.
+
+
+Sobre el color del display:
+
+Para saber si el usuario está tecleando un número, el display se vuelve azul.
+Si el display está negro, entonces el número mostrado es un resultado o es simplemente el 0 inicial.
+
+Hay un caso curioso: si el usuario pulsa "0" entonces el display muestra un "0" en azul, indicando
+que no es el 0 inicial sino que es un número introducido por el usuario. En este caso, se puede
+asignar el 0 a una variable o se puede pulsar una tecla de operación, lo cual insertará el 0
+como si hubiéramos pulsado Enter.
+
+
+Un saludo y muchísimas gracias por el curso!
+
+Ferran
