@@ -12,30 +12,24 @@
 
 @property (nonatomic, strong) NSMutableArray* programStack;
 
-/**
-* NSDictionary where the keys are the operators and the values are the number of their operands.
-* If the stack element is here, it is an operator (and you can get the number of its operands).
-*/
-@property (nonatomic, strong) NSDictionary* operators;
-
 @end
 
 
 @implementation CalculatorBrain
 
 @synthesize programStack = _programStack;
-@synthesize operators = _operators;
 
-- (NSMutableArray*) programStack {
+/**
+* NSDictionary where the keys are the operators and the values are the number of their operands.
+* If the stack element is here, it is an operator (and you can get the number of its operands).
+*/
+static NSDictionary* operators;
 
-	if (!_programStack) _programStack = [[NSMutableArray alloc] init];
-	return _programStack;
-}
++ (void) initialize {
 
-// TODO: How to define this as a constant?
-- (NSDictionary*) operators {
+//	[super initialize];
 
-	if (!_operators) _operators = [NSDictionary
+	operators = [NSDictionary
 			dictionaryWithObjectsAndKeys:
 					[NSNumber numberWithInteger:2], @"+",
 					[NSNumber numberWithInteger:2], @"-",
@@ -46,9 +40,14 @@
 					[NSNumber numberWithInteger:1], @"sqrt",
 					[NSNumber numberWithInteger:1], @"+/-",
 					[NSNumber numberWithInteger:0], @"π",
-			nil];
+					nil];
+}
 
-	return _operators;
+
+- (NSMutableArray*) programStack {
+
+	if (!_programStack) _programStack = [[NSMutableArray alloc] init];
+	return _programStack;
 }
 
 - (void) pushOperand :(double) operand {
@@ -144,7 +143,7 @@
 
 	if (element) {
 
-		NSNumber* const numberOfParameters = [self.operators objectForKey:element];
+		NSNumber* const numberOfParameters = [operators objectForKey:element];
 		if (numberOfParameters) {
 
 			// Treat operators depending on their number of parameters
@@ -187,7 +186,7 @@
 	if (element) {
 
 		// If element is a NSString and is not an operator, it must be a variable
-		if ([element isKindOfClass:[NSString class]] && ![self.operators objectForKey:element]) {
+		if ([element isKindOfClass:[NSString class]] && ![operators objectForKey:element]) {
 			[variables addObject:element];
 		}
 
